@@ -10,7 +10,6 @@ he will be able to perform all operations.
 while etc.
 • Input: Balance, user type, operation, repeat? etc.
  */
-
 public class ATMSimulator {
     // standard, premium
     // standard - deposit + withdraw + check balance
