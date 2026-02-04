@@ -127,7 +127,7 @@ public class ATMSimulator {
     public static int typesOfUser(Scanner sc){
         System.out.println("\nSelect user type (7/15): ");
         System.out.println("7. Standard user - features: deposit, withdraw, check balance" + "\n"
-                        + "15. Premium user - features: deposit, withdraw, check balance & transfer funds");
+                + "15. Premium user - features: deposit, withdraw, check balance & transfer funds");
         return sc.nextInt();
     }
     public static int typesOfOperation(Scanner sc){
@@ -136,4 +136,3 @@ public class ATMSimulator {
         return sc.nextInt();
     }
 }
-
