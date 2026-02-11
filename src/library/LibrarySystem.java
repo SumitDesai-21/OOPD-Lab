@@ -14,7 +14,7 @@ public class LibrarySystem {
                 new Books("Data Structures in Java", "Narasimha Karumanchi", 500, 1, 384376, true),
                 new Books("Operating System Concepts", "Silberschatz", 600, 10, 794074, true),
                 new Books("Computer Networks", "Andrew Tanenbaum", 580, 5, 567894, true),
-                new Books("Database System Concepts", "Korth", 620, 6, 34565, true),
+                new Books("Database System Concepts", "Korth", 620, 6, 345657, true),
                 new Books("Let Us C", "Yashavant Kanetkar", 250, 15, 439847, true),
                 new Books("C Programming Language", "Dennis Ritchie", 350, 2, 579834, true),
                 new Books("Python Crash Course", "Eric Matthes", 480, 2, 697842, true),
@@ -23,7 +23,7 @@ public class LibrarySystem {
         };
         System.out.println("Welcome To COEP Library.");
         Scanner sc = new Scanner(System.in);
-        
+        int bookId = 0;
         boolean repeat = true;
         do{ 
             System.out.println("What do you want? ");
@@ -34,27 +34,26 @@ public class LibrarySystem {
                     for (int i = 0; i < books.length; i++) {
                         if (books[i] == null) continue;
                         String status = books[i].isAvailable ? "Available" : "Not Available";
-                        System.out.println((i + 1) + ". " + " BookId: "+ books[i].bookId  + " | " + books[i].title + " by " + books[i].author + " | Edition: " + books[i].edition + " | Price: Rs." + books[i].price + " | Status: " + status);
+                        System.out.println((i + 1) + ". " + "\tBookId: "+ books[i].bookId  + " | " + books[i].title + " by " + books[i].author + " | Edition: " + books[i].edition + " | Price: Rs." + books[i].price + " | Status: " + status);
                     }
                     break;
                     
                 case 2:
                     System.out.print("Enter id of book you want to issue. ");
-                    int bookId = sc.nextInt();
+                    bookId = sc.nextInt();
                     boolean noBookWithId = true;
-                  
+                
                     for(int i = 0; i < books.length; i++){
-                        if(books[i] == null) continue;
                         if(books[i].bookId == bookId){
                             noBookWithId  = false;
-                            String status = books[i].isAvailable ? "is Available" : "is Not Available";
+                            String status = books[i].isAvailable ? "is available" : "is not available";
                             System.out.println(books[i].title + " by " + books[i].author+ " bookId: "+ bookId + " " + status);                            
                             
                             if(books[i].isAvailable){
                                 System.out.print("Do you want to issue this book (yes or no)? ");
                                 if(sc.next().toLowerCase().equals("yes")){
                                     BOOKS_ISSUED++;
-                                    System.out.println("Book with bookId: "+ bookId+ " issued to you");
+                                    System.out.println("Book with bookId: "+ bookId+ " issued to you.");
                                     books[i].isAvailable = false;
                                     break;
                                 }
@@ -63,11 +62,7 @@ public class LibrarySystem {
                                     break;
                                 }
                             }
-                            else{
-                                break;
-                            }
                         }
-                        break;
                     }
                     if(noBookWithId){
                         System.out.println("Sorry! There's no book with bookId: "+ bookId);
@@ -76,17 +71,17 @@ public class LibrarySystem {
                     break;
 
                 case 3:
-                    System.out.println("Enter id of the book you want to return: ");
+                    System.out.print("Enter id of the book you want to return: ");
                     bookId = sc.nextInt();
-                    noBookWithId = false;
+                    noBookWithId = true;
 
                     for(int i = 0; i < books.length; i++){
                         if(books[i] == null) continue;
                         if(books[i].bookId == bookId){
-                            noBookWithId = true;
+                            noBookWithId = false;
                     
                             if(books[i].isAvailable){
-                                System.out.println(books[i].title + " by " + books[i].author+ " bookId: "+ bookId + " is already available" );  
+                                System.out.println(books[i].title + " by " + books[i].author+ " book id: "+ bookId + " wasn't issued by you." );  
                                 break;                          
                             }
                             if(!books[i].isAvailable){
@@ -102,16 +97,13 @@ public class LibrarySystem {
                                     break;
                                 }
                             }
-                            else{
-                                break;
-                            }
                         }
-                        if(noBookWithId){
-                            System.out.println("Sorry! Book with bookId: "+ bookId+" wasn't issued.");
-                            break;
-                        }
+                    }
+                    if(noBookWithId){
+                        System.out.println("Sorry! Book with bookId: "+ bookId+" wasn't issued.");
                         break;
                     }
+                    break;
                 default:
                     break;
             }
