@@ -1,0 +1,9 @@
+Assignment 3: Constructors, constructor overloading and method overloading
+• Employees in an organization have id, name, salary, bonus, rating.
+• Every employee must have an id and name.
+• By default, the employee has salary Rs. 10000.00, bonus as 0 and rating as 1
+• Employee can have any other salary and/ or bonus amount.
+• Depending on the rating given to the employee, the bonus is calculated as bonus amount * rating
+• Create record of 10 employees in an array.
+• Ask the employer if bonus or rating or both for any employee is to be updated
+• Print the before and after salary details of every employee.
