@@ -1,0 +1,10 @@
+Assignment 4: Inheritance and method overriding
+• In a Vehicle Management System, every vehicle has brand, fuel, max speed, wheels and methods:
+displayInfo(), start(), stop().
+• Manual vehicle inherits from Vehicle, has fuel = None, Auto vehicle inherits from Vehicle, has mileage.
+• Any vehicle is either Manual vehicle or Auto vehicle.
+• Bike inherits from Auto vehicles has wheels=2 and has some other attributes and methods like
+displayInfo(), ride() etc.
+• Car inherits from Auto vehicles has wheels=4 and has some other attributes and methods like displayInfo(),
+honk() etc.
+• Demonstrate polymorphism.
