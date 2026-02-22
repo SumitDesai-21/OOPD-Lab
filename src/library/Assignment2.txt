@@ -1,0 +1,7 @@
+Assignment 2: Class and instance variables and methods
+• A library system maintains a record of books. Every book has title, price, edition etc. Maintain a record of
+at least 10 books.
+• Whenever a book is issued, the total count of issued books increases and it decreases after the book is
+returned.
+• Every student may issue or return a book.
+• At any point in time, print what percentage of total books are issued from the library.
