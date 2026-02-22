@@ -1,0 +1,9 @@
+1. Assignment 1: User input, Java data types, operators and control structures
+• ATM Machine Simulator: The program should allow a customer to perform simple banking operations like
+check balance, deposit, withdraw and transfer funds on the available balance depending on the type of
+customer. Allow or deny user operations depending on user type and operation using bitwise operators
+E.g. Check balance has value 1, transfer funds has value 8 etc.. User of type "Premium" has value 15 and
+he will be able to perform all operations.
+• Use: User input, data types, bitwise operations, assignment operations, control structures like if, switch,
+while etc.
+• Input: Balance, user type, operation, repeat? etc.
