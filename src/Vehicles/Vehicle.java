@@ -51,7 +51,7 @@ class Bike extends AutoVehicle {
     void ride(){
         System.out.println("Bike is riding...");
     }
-}
+}   
 class Car extends AutoVehicle{
     Car(String brand, String fuelType, int maxSpeed, int mileage){
         super(brand, fuelType, maxSpeed, 4, mileage);
