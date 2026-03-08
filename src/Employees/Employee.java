@@ -1,24 +1,44 @@
 package Employees;
+
 public class Employee {
     int id;
     String name;
+    double baseSalary;
     double salary;
-    int bonus;
+    double bonus;
     int rating;
-    
-    // every employee must have an id & name
-    public Employee(int id, String name){
+
+    Employee(int id, String name) {
         this.id = id;
         this.name = name;
-        this.bonus = 0;
-        this.salary = 10000.00;
+        this.baseSalary = 10000.00;
+        this.bonus = 0.0;
         this.rating = 1;
+        this.salary = baseSalary + (bonus * rating);
     }
-    public Employee(int id, String name, double salary, int bonus_amount, int rating){
+
+    Employee(int id, String name, double baseSalary, double bonus, int rating) {
         this.id = id;
         this.name = name;
+        this.baseSalary = baseSalary;
+        this.bonus = bonus;
         this.rating = rating;
-        this.bonus = bonus_amount * rating;
-        this.salary = salary + this.bonus;
+        this.salary = baseSalary + (bonus * rating);
+    }
+
+    void update(double bonus) {
+        this.bonus = bonus;
+        this.salary = baseSalary + (this.bonus * this.rating);
+    }
+
+    void update(int rating) {
+        this.rating = rating;
+        this.salary = baseSalary + (this.bonus * this.rating);
+    }
+
+    void update(double bonus, int rating) {
+        this.bonus = bonus;
+        this.rating = rating;
+        this.salary = baseSalary + (this.bonus * this.rating);
     }
 }

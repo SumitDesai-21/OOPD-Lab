@@ -2,10 +2,8 @@ package Employees;
 
 import java.util.Scanner;
 
-// Main file to manage employees
 public class Main {
-    
-    // Create record of 10 employees in an array.
+
     private static final int EMPLOYEE_COUNT = 10;
     Employee[] employees = new Employee[EMPLOYEE_COUNT];
 
@@ -22,111 +20,123 @@ public class Main {
         employees[9] = new Employee(10, "Aditi Jain");
     }
 
+    private void printAllEmployees() {
+        System.out.println("Emp.Id.\t|Name\t\t|Salary\t\t|Bonus\t|Rating\t");
+        System.out.println("--------------------------------------------------------");
+        for (Employee e : employees) {
+            System.out.println(e.id + "\t|" + e.name + "\t|" + e.salary + "\t|" + e.bonus + "\t|" + e.rating);
+        }
+    }
+
+    private Employee findById(int id) {
+        for (Employee e : employees) {
+            if (e.id == id)
+                return e;
+        }
+        return null;
+    }
+
+    private void menu() {
+        System.out.println("Select an operation:");
+        System.out.println("1. View all employees");
+        System.out.println("2. Update bonus");
+        System.out.println("3. Update rating");
+        System.out.println("4. Update bonus and rating");
+        System.out.print("Choice: ");
+    }
+
     public static void main(String[] args) {
-        Main manager = new Main(); // manager can update employee data
+        Main manager = new Main();
         manager.initialize();
-
         Scanner sc = new Scanner(System.in);
-        int opr;
 
-        
-        boolean repeat = true;
-        do {
-            opr = menu(sc);
-            switch (opr) {
-            case 1:
-                // as employees is non-static we can refer to it with manager using . operator
-                System.out.println("Emp.Id.\t|Name\t\t|Salary\t\t|Bonus\t|Rating\t");
-                System.out.println("--------------------------------------------------------");
-                for(Employee e: manager.employees){
-                    System.out.println(e.id+"\t|"+ e.name+ "\t|"+ e.salary+"\t|"+ e.bonus+"\t|"+ e.rating);
-                }
-                break;
-        
-            case 2:
-                System.out.print("Enter employee id & bonus amount to be updated respectively. ");
-                int id = sc.nextInt();
-                int bonus_amt = sc.nextInt();
-                boolean found = false;
-                for(Employee e: manager.employees){
-                    if(e.id == id){
-                        found = true;
-                        double prev_salary = e.salary;
-                        e.salary -= e.bonus;
-                        e.bonus = bonus_amt * e.rating;
-                        e.salary += e.bonus;
-                        
-                        System.out.println("Previous salary: "+ prev_salary+", Updated salary: "+ e.salary);
-                    }
-                }
-                if(!found){
-                    System.out.println("No employee with id: "+ id);
-                }
-                break;
+        while (true) {
+            manager.menu();
+            int choice = sc.nextInt();
 
-            case 3:
-                System.out.print("Enter employee id & rating to be updated respectively. ");
-                id = sc.nextInt();
-                int rating = sc.nextInt();
-                found = false;
-                for(Employee e: manager.employees){
-                    if(e.id == id){
-                        found = true;
-                        double prev_salary = e.salary;
-                        e.salary -= e.bonus;
-                        if(e.rating != 0){
-                            e.bonus /= e.rating;
-                        }
-                        e.rating = rating;
-                        e.bonus *= rating;
-                        e.salary += e.bonus;
-                        
-                        System.out.println("Previous salary: "+ prev_salary+", Updated salary: "+ e.salary);
-                    }
-                }
-                if(!found){
-                    System.out.println("No employee with id: "+ id);
-                }
-                break;
+            switch (choice) {
+                case 1:
+                    manager.printAllEmployees();
+                    break;
 
-            case 4:
-                System.out.print("Enter employee id, bonus amount & rating to be updated respectively. ");
-                id = sc.nextInt();
-                bonus_amt = sc.nextInt();
-                rating = sc.nextInt();
-                found = false;
-                for(Employee e: manager.employees){
-                    if(e.id == id){
-                        found = true;
-                        double prev_salary = e.salary;
-                        e.salary -= e.bonus;
-                        e.rating = rating;
-                        e.bonus = bonus_amt * rating;
-                        e.salary += e.bonus;
-                        
-                        System.out.println("Previous salary: "+ prev_salary+", Updated salary: "+ e.salary);
+                case 2: {
+                    System.out.println("\nBefore Update: ");
+                    manager.printAllEmployees();
+
+                    System.out.print("Enter employee ID: ");
+                    int id = sc.nextInt();
+                    Employee e = manager.findById(id);
+
+                    if (e == null) {
+                        System.out.println("Employee not found.");
+                        break;
                     }
+
+                    System.out.print("Enter new bonus amount: ");
+                    double bonus = sc.nextDouble();
+                    e.update(bonus);
+
+                    System.out.println("\nAfter Update: ");
+                    manager.printAllEmployees();
+                    break;
                 }
-                if(!found){
-                    System.out.println("No employee with id: "+ id);
+
+                case 3: {
+                    System.out.println("\nBefore Update: ");
+                    manager.printAllEmployees();
+
+                    System.out.print("Enter employee ID: ");
+                    int id = sc.nextInt();
+                    Employee e = manager.findById(id);
+
+                    if (e == null) {
+                        System.out.println("Employee not found.");
+                        break;
+                    }
+
+                    System.out.print("Enter new rating: ");
+                    int rating = sc.nextInt();
+                    e.update(rating);
+
+                    System.out.println("\nAfter Update: ");
+                    manager.printAllEmployees();
+                    break;
                 }
-                break;
-            default:
-                System.out.println("Invalid operation! pls try again");
-                break;
+
+                case 4: {
+                    System.out.println("\nBefore Update: ");
+                    manager.printAllEmployees();
+
+                    System.out.print("Enter employee ID: ");
+                    int id = sc.nextInt();
+                    Employee e = manager.findById(id);
+
+                    if (e == null) {
+                        System.out.println("Employee not found.");
+                        break;
+                    }
+
+                    System.out.print("Enter new bonus amount: ");
+                    double bonus = sc.nextDouble();
+                    System.out.print("Enter new rating: ");
+                    int rating = sc.nextInt();
+                    e.update(bonus, rating);
+
+                    System.out.println("\nAfter Update: ");
+                    manager.printAllEmployees();
+                    break;
+                }
+
+                default:
+                    System.out.println("Invalid choice. Try again.");
             }
-            System.out.println("Do you want to continue? (yes or no)");
-            if(sc.next().toLowerCase().equals("no")){
+
+            System.out.print("Continue? (yes or no): ");
+            if (sc.next().toLowerCase().equals("no"))
                 break;
-            }
-        } while (repeat);
-        System.out.println("Program exited successfully.");
+        }
+
+        sc.close();
+        System.out.println("Program exited.");
     }
-    public static int menu(Scanner sc){
-        System.out.println("Enter operation to be performed");
-        System.out.println("1. Check employee list\n2. Update bonus of an employee\n3. Update rating of an employee"+
-        "\n4. Update bonus & rating both of an employee.");
-        return sc.nextInt();
-    }
-    
 }
