@@ -1,0 +1,5 @@
+Assignment 5: Generics
+• Implement a Generic Inventory Management System for a retail store.
+• The store deals with different types of items such as Electronics, Groceries, and Clothing.
+• Instead of creating separate inventory classes for each item type, the system should use Java Generics to
+create type-safe, reusable components
